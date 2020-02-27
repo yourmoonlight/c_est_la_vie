@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logging on Yourmoonlight&#39;blog</title>
+    <link>http://localhost:1313/tags/logging/</link>
+    <description>Recent content in Logging on Yourmoonlight&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 18 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/logging/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用Django的Signal方便地把自定义日志存到数据库</title>
+      <link>http://localhost:1313/post/2016-05-18-%E7%94%A8django%E7%9A%84signal%E6%96%B9%E4%BE%BF%E5%9C%B0%E6%8A%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%BF%97%E5%AD%98%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Wed, 18 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2016-05-18-%E7%94%A8django%E7%9A%84signal%E6%96%B9%E4%BE%BF%E5%9C%B0%E6%8A%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%BF%97%E5%AD%98%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description>有时候需要根据业务，制定log系统，比如需要把一个对象的状态变换给记录下来，留着以后分析。刚看了篇文章，可以用django的signal来做</description>
+    </item>
+    
+  </channel>
+</rss>

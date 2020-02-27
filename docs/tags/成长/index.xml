@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>成长 on Yourmoonlight&#39;blog</title>
+    <link>http://localhost:1313/tags/%E6%88%90%E9%95%BF/</link>
+    <description>Recent content in 成长 on Yourmoonlight&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 04 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/%E6%88%90%E9%95%BF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2016 Write something different</title>
+      <link>http://localhost:1313/post/2016-05-04-write-something-different-2016/</link>
+      <pubDate>Wed, 04 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2016-05-04-write-something-different-2016/</guid>
+      <description>工作已经10个月了， ​ 1. 最大的感悟是，了解越多，越能发现自己的无知，越需要学习。 ​ 2. 最大的收获是， 不再害怕问题，相信问题总有解决的方法。 ​ 3.</description>
+    </item>
+    
+  </channel>
+</rss>

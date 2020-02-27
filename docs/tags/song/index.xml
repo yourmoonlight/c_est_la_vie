@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>song on Yourmoonlight&#39;blog</title>
+    <link>http://localhost:1313/tags/song/</link>
+    <description>Recent content in song on Yourmoonlight&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 30 May 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/song/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>YouRaiseMeUp</title>
+      <link>http://localhost:1313/post/2014-05-30-you-raise-me-up/</link>
+      <pubDate>Fri, 30 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2014-05-30-you-raise-me-up/</guid>
+      <description>{% include JB/setup %} ###You Raise Me Up &amp;mdash;Westlife When I am down and, oh my soul so weary When troubles come and my heart burdened be Then, I am still and wait here in the silence Until you come and sit a while with me You raise me up, so I can stand on mountains You raise me up, to walk on stormy seas I am strong, when I</description>
+    </item>
+    
+    <item>
+      <title>What Are Words</title>
+      <link>http://localhost:1313/post/2014-05-28-what-are-words/</link>
+      <pubDate>Wed, 28 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2014-05-28-what-are-words/</guid>
+      <description>{% include JB/setup %} ###What Are Words &amp;ndash; chris medina Anywhere you are,I am near Anywhere you go, I&amp;rsquo;ll be there Anytime you whisper my name you&amp;rsquo;ll see How every single promise I keep Cause what kind of guy would I be If I was to leave when you need me most What are words If you really don&amp;rsquo;t mean them When you say them What are words If they&amp;rsquo;re</description>
+    </item>
+    
+  </channel>
+</rss>

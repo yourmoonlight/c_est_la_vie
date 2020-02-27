@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Concurrency on Yourmoonlight&#39;blog</title>
+    <link>http://localhost:1313/tags/concurrency/</link>
+    <description>Recent content in Concurrency on Yourmoonlight&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 17 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DECO让Python并发变得超级简单</title>
+      <link>http://localhost:1313/post/2016-05-17-deco%E8%AE%A9python%E5%B9%B6%E5%8F%91%E5%8F%98%E5%BE%97%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95/</link>
+      <pubDate>Tue, 17 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2016-05-17-deco%E8%AE%A9python%E5%B9%B6%E5%8F%91%E5%8F%98%E5%BE%97%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95/</guid>
+      <description>最近发现了个好玩的库deco，对Python multiprocessing进行了封装，由美国威斯康星大学的Alex Sherman和 Peter Den Har</description>
+    </item>
+    
+  </channel>
+</rss>
