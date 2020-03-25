@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>记一次Redis内存暴涨的问题</title>
+      <link>http://localhost:1313/post/2018-12-10-redis-mem-grows-rapidly/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2018-12-10-redis-mem-grows-rapidly/</guid>
+      <description>现象 2018年12月15日开始，一个线上业务依赖的Redis内存陡增，但是Key的增长并没有明显变化。 排查思路与过程 第一反应，是不是上线导致</description>
+    </item>
+    
+    <item>
       <title>Golang服务的性能调优与问题定位</title>
       <link>http://localhost:1313/post/2017-07-15-how-to-profile-golang-programs/</link>
       <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
@@ -30,20 +39,11 @@
     </item>
     
     <item>
-      <title>Redis内存暴涨的问题排查</title>
-      <link>http://localhost:1313/post/2018-12-15-redis-mem-blow-up/</link>
-      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/post/2018-12-15-redis-mem-blow-up/</guid>
-      <description>现象 2018-12-15 23:00:00 开始，一个线上业务依赖的Redis内存陡增，但是Key的增长并没有明显变化。 排查思路与过程 第一反应，是不是上线导致的？立马查看了上线</description>
-    </item>
-    
-    <item>
-      <title>分享使用redigo连到redis proxy踩到的坑</title>
-      <link>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redis-proxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</link>
+      <title>分享使用Redigo连到Redis Proxy踩到的坑</title>
+      <link>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redisproxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</link>
       <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redis-proxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</guid>
+      <guid>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redisproxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</guid>
       <description>最近在开发项目的时候，踩了一个redis相关的坑，现分享给大家。 使用的第三方库是 redigo， 连的redis地址是一个proxy， 首先要说的</description>
     </item>
     
@@ -57,21 +57,30 @@
     </item>
     
     <item>
-      <title>DECO让Python并发变得超级简单</title>
+      <title>Deco让Python并发变得超级简单</title>
       <link>http://localhost:1313/post/2016-05-17-deco%E8%AE%A9python%E5%B9%B6%E5%8F%91%E5%8F%98%E5%BE%97%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95/</link>
       <pubDate>Tue, 17 May 2016 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/post/2016-05-17-deco%E8%AE%A9python%E5%B9%B6%E5%8F%91%E5%8F%98%E5%BE%97%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95/</guid>
-      <description>最近发现了个好玩的库deco，对Python multiprocessing进行了封装，由美国威斯康星大学的Alex Sherman和 Peter Den Har</description>
+      <description>最近发现了个好玩的库Deco，对Python Multiprocessing进行了封装，由美国威斯康星大学的Alex Sherman和 Peter Den Har</description>
     </item>
     
     <item>
-      <title>2016 Write something different</title>
+      <title>Write Something Different</title>
       <link>http://localhost:1313/post/2016-05-04-write-something-different-2016/</link>
       <pubDate>Wed, 04 May 2016 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/post/2016-05-04-write-something-different-2016/</guid>
       <description>工作已经10个月了， ​ 1. 最大的感悟是，了解越多，越能发现自己的无知，越需要学习。 ​ 2. 最大的收获是， 不再害怕问题，相信问题总有解决的方法。 ​ 3.</description>
+    </item>
+    
+    <item>
+      <title>Adidas官网价格监控小脚本</title>
+      <link>http://localhost:1313/post/2016-03-21-adidas-price-monitor/</link>
+      <pubDate>Mon, 21 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2016-03-21-adidas-price-monitor/</guid>
+      <description>喜欢三叶草，但是有时候太贵了不舍得出手，就想着等价格再低一点。 但坑爹的是三叶草官网没有价格提醒。 怎么办呢？ 自己写个程序定时去抓吧。源码👇 1 2</description>
     </item>
     
     <item>
@@ -89,7 +98,7 @@
       <pubDate>Sun, 13 Jul 2014 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/post/2014-07-13-rename-srt/</guid>
-      <description>{% include JB/setup %} ###程序员都是&amp;quot;懒&amp;quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，</description>
+      <description>程序员都是&amp;quot;懒&amp;quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子， 这样每过几分钟</description>
     </item>
     
     <item>
@@ -98,7 +107,7 @@
       <pubDate>Sun, 13 Jul 2014 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/post/2014-07-13-rename-srt2/</guid>
-      <description>{% include JB/setup %} ###觉得麻烦，所以要改进。 这次下载的视频分好多章，所以解压出来有好多个子目录，这样上次那个小程序就 需要改进了。既然是批量重命名，就</description>
+      <description>觉得麻烦，所以要改进。 这次下载的视频分好多章，所以解压出来有好多个子目录，这样上次那个小程序就 需要改进了。既然是批量重命名，就得一键操作才行</description>
     </item>
     
     <item>

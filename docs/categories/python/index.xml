@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Yourmoonlight&#39;blog</title>
+    <link>http://localhost:1313/categories/python/</link>
+    <description>Recent content in Python on Yourmoonlight&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 21 Mar 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Adidas官网价格监控小脚本</title>
+      <link>http://localhost:1313/post/2016-03-21-adidas-price-monitor/</link>
+      <pubDate>Mon, 21 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2016-03-21-adidas-price-monitor/</guid>
+      <description>喜欢三叶草，但是有时候太贵了不舍得出手，就想着等价格再低一点。 但坑爹的是三叶草官网没有价格提醒。 怎么办呢？ 自己写个程序定时去抓吧。源码👇 1 2</description>
+    </item>
+    
+  </channel>
+</rss>

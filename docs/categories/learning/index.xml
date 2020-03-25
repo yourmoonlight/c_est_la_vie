@@ -21,16 +21,16 @@
     </item>
     
     <item>
-      <title>DECO让Python并发变得超级简单</title>
+      <title>Deco让Python并发变得超级简单</title>
       <link>http://localhost:1313/post/2016-05-17-deco%E8%AE%A9python%E5%B9%B6%E5%8F%91%E5%8F%98%E5%BE%97%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95/</link>
       <pubDate>Tue, 17 May 2016 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/post/2016-05-17-deco%E8%AE%A9python%E5%B9%B6%E5%8F%91%E5%8F%98%E5%BE%97%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95/</guid>
-      <description>最近发现了个好玩的库deco，对Python multiprocessing进行了封装，由美国威斯康星大学的Alex Sherman和 Peter Den Har</description>
+      <description>最近发现了个好玩的库Deco，对Python Multiprocessing进行了封装，由美国威斯康星大学的Alex Sherman和 Peter Den Har</description>
     </item>
     
     <item>
-      <title>2016 Write something different</title>
+      <title>Write Something Different</title>
       <link>http://localhost:1313/post/2016-05-04-write-something-different-2016/</link>
       <pubDate>Wed, 04 May 2016 00:00:00 +0000</pubDate>
       
@@ -44,7 +44,7 @@
       <pubDate>Sun, 13 Jul 2014 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/post/2014-07-13-rename-srt/</guid>
-      <description>{% include JB/setup %} ###程序员都是&amp;quot;懒&amp;quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，</description>
+      <description>程序员都是&amp;quot;懒&amp;quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子， 这样每过几分钟</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Sun, 13 Jul 2014 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/post/2014-07-13-rename-srt2/</guid>
-      <description>{% include JB/setup %} ###觉得麻烦，所以要改进。 这次下载的视频分好多章，所以解压出来有好多个子目录，这样上次那个小程序就 需要改进了。既然是批量重命名，就</description>
+      <description>觉得麻烦，所以要改进。 这次下载的视频分好多章，所以解压出来有好多个子目录，这样上次那个小程序就 需要改进了。既然是批量重命名，就得一键操作才行</description>
     </item>
     
   </channel>

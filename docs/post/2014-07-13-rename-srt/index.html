@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="David" /><meta name="description" content="{% include JB/setup %} ###程序员都是&amp;quot;懒&amp;quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="David" /><meta name="description" content="程序员都是&amp;quot;懒&amp;quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子， 这样每过几分钟" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -39,22 +39,22 @@
 
 
 <meta property="og:title" content="批量重命名字幕文件" />
-<meta property="og:description" content="{% include JB/setup %} ###程序员都是&quot;懒&quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，" />
+<meta property="og:description" content="程序员都是&quot;懒&quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子， 这样每过几分钟" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://localhost:1313/post/2014-07-13-rename-srt/" />
 <meta property="article:published_time" content="2014-07-13T00:00:00+00:00" />
 <meta property="article:modified_time" content="2014-07-13T00:00:00+00:00" />
 <meta itemprop="name" content="批量重命名字幕文件">
-<meta itemprop="description" content="{% include JB/setup %} ###程序员都是&quot;懒&quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，">
+<meta itemprop="description" content="程序员都是&quot;懒&quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子， 这样每过几分钟">
 <meta itemprop="datePublished" content="2014-07-13T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2014-07-13T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="507">
+<meta itemprop="wordCount" content="497">
 
 
 
 <meta itemprop="keywords" content="python 重命名," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="批量重命名字幕文件"/>
-<meta name="twitter:description" content="{% include JB/setup %} ###程序员都是&quot;懒&quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，"/>
+<meta name="twitter:description" content="程序员都是&quot;懒&quot;家伙吧 今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子， 这样每过几分钟"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -131,19 +131,27 @@
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
   <div class="post-toc-content always-active">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#程序员都是懒家伙吧">程序员都是"懒"家伙吧</a></li>
+        <li><a href="#解决方案">解决方案</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
   </div>
 </div>
     <div class="post-content">
-      <p>{% include JB/setup %}</p>
-<p>###程序员都是&quot;懒&quot;家伙吧
-今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，
+      <h3 id="程序员都是懒家伙吧">程序员都是&quot;懒&quot;家伙吧</h3>
+<p>今天从网上下载一些英文视频教程， 虽然文件不大，但是分成了很多小节，一节几分钟的样子，
 这样每过几分钟就得手动添加字幕，好麻烦。我就想为什么播放器不能自动加载字幕呢，我都已经把
 字幕跟视频放在一个文件夹了，播放器应该有这个功能吧？上网搜索了一下果然有这个功能，只是需
 要字幕文件跟视频文件同名才能自动加载。对比了下字幕和视频的文件名，区别只是字幕文件名多了
 个&rdquo;.en&rdquo;。要手动改么？当然不要，有上百个字幕文件，太麻烦。
 那么下面，就稍微动动手吧。</p>
-<p>###解决方案</p>
+<h3 id="解决方案">解决方案</h3>
 <ol>
 <li>
 <p>把文件夹里的所有文件名都列出来。</p>

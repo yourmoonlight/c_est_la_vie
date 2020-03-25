@@ -30,11 +30,11 @@
     </item>
     
     <item>
-      <title>分享使用redigo连到redis proxy踩到的坑</title>
-      <link>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redis-proxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</link>
+      <title>分享使用Redigo连到Redis Proxy踩到的坑</title>
+      <link>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redisproxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</link>
       <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redis-proxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</guid>
+      <guid>http://localhost:1313/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redisproxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/</guid>
       <description>最近在开发项目的时候，踩了一个redis相关的坑，现分享给大家。 使用的第三方库是 redigo， 连的redis地址是一个proxy， 首先要说的</description>
     </item>
     
