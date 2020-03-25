@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Registry on Yourmoonlight&#39;blog</title>
+    <link>http://localhost:1313/tags/registry/</link>
+    <description>Recent content in Registry on Yourmoonlight&#39;blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 03 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/registry/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一个诡异的拉镜像失败问题排查</title>
+      <link>http://localhost:1313/post/2020-01-03-docker-pull-failed-analysis/</link>
+      <pubDate>Fri, 03 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2020-01-03-docker-pull-failed-analysis/</guid>
+      <description>问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&amp;quot;bad request&amp;rdquo;，业务方多次尝试拉取镜像均失败。 起</description>
+    </item>
+    
+  </channel>
+</rss>
