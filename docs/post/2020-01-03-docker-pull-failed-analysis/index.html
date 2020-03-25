@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="David" /><meta name="description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&amp;quot;bad request&amp;rdquo;，业务方多次尝试拉取镜像均失败。 起" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="David" /><meta name="description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&amp;quot;Bad Request&amp;rdquo;，业务方多次尝试拉取镜像均失败。 起" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -34,27 +34,27 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
 
-<link href="/dist/%3cnil%3e" rel="stylesheet">
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
 <meta property="og:title" content="一个诡异的拉镜像失败问题排查" />
-<meta property="og:description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;bad request&rdquo;，业务方多次尝试拉取镜像均失败。 起" />
+<meta property="og:description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;Bad Request&rdquo;，业务方多次尝试拉取镜像均失败。 起" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://localhost:1313/post/2020-01-03-docker-pull-failed-analysis/" />
 <meta property="article:published_time" content="2020-01-03T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-01-03T00:00:00+00:00" />
 <meta itemprop="name" content="一个诡异的拉镜像失败问题排查">
-<meta itemprop="description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;bad request&rdquo;，业务方多次尝试拉取镜像均失败。 起">
+<meta itemprop="description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;Bad Request&rdquo;，业务方多次尝试拉取镜像均失败。 起">
 <meta itemprop="datePublished" content="2020-01-03T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2020-01-03T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="236">
+<meta itemprop="wordCount" content="1506">
 
 
 
 <meta itemprop="keywords" content="Golang,Registry,Harbor,Docker," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="一个诡异的拉镜像失败问题排查"/>
-<meta name="twitter:description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;bad request&rdquo;，业务方多次尝试拉取镜像均失败。 起"/>
+<meta name="twitter:description" content="问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;Bad Request&rdquo;，业务方多次尝试拉取镜像均失败。 起"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -123,6 +123,7 @@
         <span class="post-time"> 2020-01-03 </span>
         <div class="post-category">
             <a href="/categories/docker/"> Docker </a>
+            <a href="/categories/golang/"> Golang </a>
             </div>
         
       </div>
@@ -133,25 +134,125 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#问题现象">问题现象</a></li>
+    <li><a href="#排查过程">排查过程</a>
       <ul>
-        <li><a href="#问题现象">问题现象</a></li>
-        <li><a href="#排查过程">排查过程</a></li>
+        <li><a href="#实验步骤">实验步骤</a></li>
+        <li><a href="#复现结果">复现结果</a></li>
+        <li><a href="#相关日志">相关日志</a></li>
       </ul>
     </li>
+    <li><a href="#分析问题原因">分析问题原因</a>
+      <ul>
+        <li><a href="#缩小排查范围">缩小排查范围</a></li>
+        <li><a href="#分析源码">分析源码</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h3 id="问题现象">问题现象</h3>
-<p>上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;bad request&rdquo;，业务方多次尝试拉取镜像均失败。</p>
-<p>起初，笔者怀疑是docker版本不同导致的拉镜像失败，但这个猜想瞬间被自己推翻，因为笔者在内网找到的测试机和ECS上用的docker是相同的版本，却可以拉取成功。最后笔者在内网机器上重新push了镜像，暂时解决了问题，先不影响业务方的正常使用。</p>
+      <h2 id="问题现象">问题现象</h2>
+<p>上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&quot;Bad Request&rdquo;，业务方多次尝试拉取镜像均失败。</p>
+<p>起初，笔者怀疑是Docker版本不同导致的拉镜像失败，但这个猜想瞬间被自己推翻，因为笔者在内网找到的测试机和ECS上用的Docker是相同的版本，却可以拉取成功。</p>
+<p>最后笔者在内网机器上重新Push了镜像，暂时解决了问题，先不影响业务方的正常使用。</p>
 <p>这就很有趣了，到底是什么原因呢？</p>
-<h3 id="排查过程">排查过程</h3>
-<p>排查之前，让我们先看下镜像仓库的整体架构，如下图：</p>
-<p><img src="../../data/image_repo.png" alt="未知"></p>
-<h4 id="heading"></h4>
+<h2 id="排查过程">排查过程</h2>
+<p>排查问题之前，让我们先看下镜像仓库的整体架构，如下图：</p>
+<p><img src="/img/image_repo.png" alt="未知"></p>
+<p>云上的镜像仓库只是作为缓存使用，真正的存储是在内网的Harbor</p>
+<p>第一步我们尝试把问题复现，一旦稳定复现就肯定能追根溯源。</p>
+<h3 id="实验步骤">实验步骤</h3>
+<ol>
+<li>新建镜像仓库项目A</li>
+<li>用Docker18.06制作镜像，并推送到A项目中</li>
+<li>分别在内网机器和云上ECS请求第二步制作好的镜像</li>
+</ol>
+<h3 id="复现结果">复现结果</h3>
+<ol>
+<li>
+<p>在内网机器用任何Docker版本都可以拉镜像成功</p>
+</li>
+<li>
+<p>但在ECS上使用Docker低版本1.6.2会拉镜像会失败</p>
+</li>
+</ol>
+<h3 id="相关日志">相关日志</h3>
+<p><strong>第一层</strong> 在ECS Client端报错显示400错误</p>
+<blockquote>
+<p>&ldquo;Error from V2 registry: Server error: 400 trying to fetch for xxx/schedule:test201912231136&rdquo;</p>
+</blockquote>
+<p><strong>第二层</strong>，在Registry端报错显示400错误，但是在Msg里提示Manifest不可用</p>
+<blockquote>
+<p>&ldquo;err.code&rdquo;:&ldquo;manifest invalid&rdquo;,&ldquo;err.detail&rdquo;:&ldquo;operation unsupported&rdquo;,&ldquo;err.message&rdquo;:&ldquo;manifest invalid&rdquo;</p>
+</blockquote>
+<p><strong>第三层</strong>，在Registry回穿的Harbor服务上报错，显示有一层文件没找到</p>
+<blockquote>
+<p>HEAD /v2/xxx/schedule/blobs/sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4 HTTP/1.1&rdquo; 404 0</p>
+</blockquote>
+<h2 id="分析问题原因">分析问题原因</h2>
+<h3 id="缩小排查范围">缩小排查范围</h3>
+<p>我们将复现出的缺失层文件:</p>
+<blockquote>
+<p>a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4</p>
+</blockquote>
+<p>在所有的Harbor实例上去检查，发现被内网机器Docker1.6.2拉取过的Harbor实例上存在这层文件，这是一个关键点，我们去看这台Harbor实例上的日志。</p>
+<blockquote>
+<p>filesystem.PutContent**(&quot;/docker/registry/v2/repositories/xxx/schedule/_layers/sha256/a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4/link</p>
+</blockquote>
+<p>我们知道Docker拉取一个镜像的过程，可以分为两个大步骤:</p>
+<ol>
+<li>获取镜像的Manifest文件，包含一些元信息，以及层文件信息</li>
+<li>获取Manifest中的所有层文件</li>
+</ol>
+<p>在拉镜像的过程中，所有的请求都是下行请求，但是这台Harbor里的Registry出现了PutContent操作。</p>
+<p>虽然这时还不知道根本原因，但此时我们已经把问题范围缩小到Registry。</p>
+<h3 id="分析源码">分析源码</h3>
+<p>那下一步我们根据已有的线索去查看Registry源码，去看这台Registry为什么会执行这个操作。</p>
+<p><strong>正向思考</strong></p>
+<p>分析哪些情况下会PutContent，我们通过<code>filesystem.PutContent</code>这个方法去看，可以找到很多调用的地方，通过经验适当剪枝去分析，但总归代码量有点大。</p>
+<p><strong>反向思考</strong></p>
+<p>在都是下行请求的情况下，Registry为什么会执行PutContent操作？这种不合常理的地方一般都是特例，会不会是这层文件比较特别？</p>
+<p>我们拿着Hash值，在Registry源代码里去搜索，找到如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Golang" data-lang="Golang"><span class="c1">// digestSHA256GzippedEmptyTar is the canonical sha256 digest of
+</span><span class="c1"></span><span class="c1">// gzippedEmptyTar
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">digestSHA256GzippedEmptyTar</span> <span class="p">=</span> <span class="nx">digest</span><span class="p">.</span><span class="nf">Digest</span><span class="p">(</span><span class="s">&#34;sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4&#34;</span><span class="p">)</span>
+
+<span class="c1">// configManifestBuilder is a type for constructing manifests from an image
+</span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到这里定义成了一个常量，那我们就可以顺着这个常量往上找，直到水落石出。</p>
+<h2 id="总结">总结</h2>
+<p><strong>问题特征</strong>：</p>
+<p>ECS Client 端拉镜像失败，出现400 Bad Request。</p>
+<p><strong>根本原因</strong>：</p>
+<p>云上Registry作为缓存时不能很好的支持低版本的Docker（1.10之前）</p>
+<p>Docker Registry针对低版本Docker（1.10之前）兼容时会把Manifest格式从V2 Schema 2 转成V2 Schema 1</p>
+<p><img src="/img/image_layer.png" alt="未知"></p>
+<p>如果镜像历史里有Empty Layer（大小为0）就会分为两种情况：</p>
+<ol>
+<li>
+<p>内网Harbor里的Registry会执行PutContent操作，进行自动填补（所以内网任何Docker版本都拉镜像成功）
+相关源码片段 docker/distribution/manifest/schema1/config_builder.go +124</p>
+<p><img src="/img/registry_code.png" alt="未知"></p>
+</li>
+<li>
+<p>云上Registry因为作为缓存模式来使用，针对低版本的Docker转换格式之后会直接穿透回内网，而此时内网没有这层文件，最终导致了拉镜像失败。</p>
+</li>
+</ol>
+<p>问题到这里就水落石出了，把问题搞个一清二楚，舒坦～</p>
+<p>话说现在还有人在用1.6.2版本的Docker么，赶紧推进升级吧</p>
 
     </div>
 
@@ -237,7 +338,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="/dist/%3cnil%3e"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 
 

@@ -6,10 +6,19 @@
     <description>Recent content in Golang on Yourmoonlight&#39;blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 15 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://localhost:1313/categories/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>一个诡异的拉镜像失败问题排查</title>
+      <link>http://localhost:1313/post/2020-01-03-docker-pull-failed-analysis/</link>
+      <pubDate>Fri, 03 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/2020-01-03-docker-pull-failed-analysis/</guid>
+      <description>问题现象 上周五有业务方反馈拉镜像失败的问题，看到的报错信息是&amp;quot;Bad Request&amp;rdquo;，业务方多次尝试拉取镜像均失败。 起</description>
+    </item>
     
     <item>
       <title>Golang服务的性能调优与问题定位</title>
