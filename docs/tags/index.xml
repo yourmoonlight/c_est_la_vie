@@ -48,6 +48,15 @@
     </item>
     
     <item>
+      <title>Memory</title>
+      <link>http://localhost:1313/tags/memory/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/memory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pprof</title>
       <link>http://localhost:1313/tags/pprof/</link>
       <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
@@ -62,6 +71,15 @@
       <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/tags/profile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>http://localhost:1313/tags/redis/</link>
+      <pubDate>Sat, 15 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/redis/</guid>
       <description></description>
     </item>
     
@@ -120,7 +138,7 @@
     </item>
     
     <item>
-      <title>Python</title>
+      <title>python</title>
       <link>http://localhost:1313/tags/python/</link>
       <pubDate>Tue, 17 May 2016 00:00:00 +0000</pubDate>
       

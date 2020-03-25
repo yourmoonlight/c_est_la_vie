@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Golang服务的性能调优与问题定位 - Yourmoonlight&#39;blog</title>
+  <title>Redis内存暴涨的问题排查 - Yourmoonlight&#39;blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="David" /><meta name="description" content="前段时间做了一个技术分享，关于服务性能调优的，再简要总结一下。 大家用Golang写服务还是比较顺手的，语法简洁，开发速度快，又天然并发。 但是" /><meta name="keywords" content="Hugo, theme, even" />
+<meta name="author" content="David" /><meta name="description" content="现象 2018-12-15 23:00:00 开始，一个线上业务依赖的Redis内存陡增，但是Key的增长并没有明显变化。 排查思路与过程 第一反应，是不是上线导致的？立马查看了上线" /><meta name="keywords" content="Hugo, theme, even" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.64.1 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/post/2017-07-15-how-to-profile-golang-programs/" />
+<link rel="canonical" href="http://localhost:1313/post/2018-12-15-redis-mem-blow-up/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -38,23 +38,23 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="Golang服务的性能调优与问题定位" />
-<meta property="og:description" content="前段时间做了一个技术分享，关于服务性能调优的，再简要总结一下。 大家用Golang写服务还是比较顺手的，语法简洁，开发速度快，又天然并发。 但是" />
+<meta property="og:title" content="Redis内存暴涨的问题排查" />
+<meta property="og:description" content="现象 2018-12-15 23:00:00 开始，一个线上业务依赖的Redis内存陡增，但是Key的增长并没有明显变化。 排查思路与过程 第一反应，是不是上线导致的？立马查看了上线" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/post/2017-07-15-how-to-profile-golang-programs/" />
+<meta property="og:url" content="http://localhost:1313/post/2018-12-15-redis-mem-blow-up/" />
 <meta property="article:published_time" content="2017-07-15T00:00:00+00:00" />
 <meta property="article:modified_time" content="2017-07-15T00:00:00+00:00" />
-<meta itemprop="name" content="Golang服务的性能调优与问题定位">
-<meta itemprop="description" content="前段时间做了一个技术分享，关于服务性能调优的，再简要总结一下。 大家用Golang写服务还是比较顺手的，语法简洁，开发速度快，又天然并发。 但是">
+<meta itemprop="name" content="Redis内存暴涨的问题排查">
+<meta itemprop="description" content="现象 2018-12-15 23:00:00 开始，一个线上业务依赖的Redis内存陡增，但是Key的增长并没有明显变化。 排查思路与过程 第一反应，是不是上线导致的？立马查看了上线">
 <meta itemprop="datePublished" content="2017-07-15T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2017-07-15T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="824">
+<meta itemprop="wordCount" content="297">
 
 
 
-<meta itemprop="keywords" content="Golang,Profile,pprof," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Golang服务的性能调优与问题定位"/>
-<meta name="twitter:description" content="前段时间做了一个技术分享，关于服务性能调优的，再简要总结一下。 大家用Golang写服务还是比较顺手的，语法简洁，开发速度快，又天然并发。 但是"/>
+<meta itemprop="keywords" content="Redis,Memory," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Redis内存暴涨的问题排查"/>
+<meta name="twitter:description" content="现象 2018-12-15 23:00:00 开始，一个线上业务依赖的Redis内存陡增，但是Key的增长并没有明显变化。 排查思路与过程 第一反应，是不是上线导致的？立马查看了上线"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -117,12 +117,12 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Golang服务的性能调优与问题定位</h1>
+      <h1 class="post-title">Redis内存暴涨的问题排查</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2017-07-15 </span>
         <div class="post-category">
-            <a href="/categories/golang/"> Golang </a>
+            <a href="/categories/redis/"> Redis </a>
             </div>
         
       </div>
@@ -133,47 +133,24 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
+    <li><a href="#现象">现象</a></li>
+    <li><a href="#排查思路与过程">排查思路与过程</a></li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <p>前段时间做了一个技术分享，关于服务性能调优的，再简要总结一下。</p>
-<p>大家用Golang写服务还是比较顺手的，语法简洁，开发速度快，又天然并发。</p>
-<p>但是仅仅这样，还不足以让Golang进入编程语言Top10。</p>
-<p>写“bug”跟定位bug是俩码事，好像后者要更难一点。不过不用担心，Golang给我们提供了很多实用工具，来帮助我们定位问题。</p>
-<p>今天要介绍的就是<strong>pprof</strong>。</p>
-<h4 id="原理">原理</h4>
-<p>市面上有几款Golang的性能调优工具，但是核心都是Golang自带的这个pprof。</p>
-<p>它主要分成两部分：</p>
-<p>​	1.runtime/pprof</p>
-<p>​	2.go tool pprof</p>
-<p>pprof的原理，其实就是对运行时的程序进行<strong>取样</strong>，然后<strong>统计</strong>绘图</p>
-<p>当前运行的系统线程，每隔段时间就会收到来自操作系统的中断信号，这时候pprof就会进行取样，然后记录在文件里，取样完成，我们使用go tool pprof工具对样本进行统计分析就OK了。</p>
-<h4 id="使用场景">使用场景</h4>
-<p>我们需要使用pprof的场景：</p>
-<p>​	1.定位内存泄漏</p>
-<p>​	2.程序效率瓶颈</p>
-<p>​	3.或者就是为了看一下程序的调用图？</p>
-<p>经常要做的就两类：内存分析、CPU分析，</p>
-<p>照着文档先看一遍，我们常用的命令其实就这么几个：top、peek、list、web。</p>
-<p>其中web命令会生成一张调用图，</p>
-<p><img src="https://github.com/yourmoonlight/yourmoonlight.github.com/blob/master/img/pprof-web.png?raw=true" alt="pprof-web"></p>
-<p>这张图是CPU profile，我们可以很清楚的看到程序运行时的调用状态，当然主要是看各个方法的耗时。</p>
-<p>为什么有的地方是虚线？因为有些耗时特别少的节点没在图上体现出来，要把图连起来，有的地方就使用虚线了。</p>
-<h4 id="go-torch">Go-Torch</h4>
-<p>这张图其实看着有点乱，那有没有能让我们看着舒服一点的工具？</p>
-<p>当然有! Uber开源的<a href="https://github.com/uber/go-torch">火焰图</a>绝对让你high～
-话不多说，我们上图:</p>
-<p><img src="https://github.com/yourmoonlight/yourmoonlight.github.com/blob/master/img/flame.png?raw=true" alt="flame">简要说一下，图上的X轴代表时间，Y轴代表程序的调用顺序。</p>
-<p>所以小方块越长耗时越多，这种瘦瘦长长的就没啥问题，相反，比较扁平的就稍微注意一下～</p>
-<p>至于pprof内存分析，也非常有用，之前写的服务有内存泄漏（因为thrift-0.9.1的一个bug，升级到0.9.2就OK了，有空写写thrift）就靠这个搞定的，用起来还挺方便。</p>
-<p>呐，有问题欢迎讨论，就酱。</p>
+      <h2 id="现象">现象</h2>
+<p>2018-12-15 23:00:00 开始，一个线上业务依赖的Redis内存陡增，但是Key的增长并没有明显变化。</p>
+<p><img src="/img/redis_mem1.png" alt="未知"></p>
+<p><img src="/img/redis_key.png" alt="未知"></p>
+<h2 id="排查思路与过程">排查思路与过程</h2>
+<p>第一反应，是不是上线导致的？立马查看了上线记录，发现问题时间点附近并没有上线。
+第二反应，代码逻辑中之前隐藏的Bug，在某一时点爆发？经过梳理排除这一点。
+最后，导出了一个端口的Key进行分析，发现也都是正常的Key。</p>
+<p>这个时候以为是有大量的用户被激活，接着联合产品同学，紧急制定产品策略，先控制住整体的写入量，保证服务可用。
+我们通过一定的策略对全站用户进行过滤，紧急策略灰度上线之后，把写入QPS降到之前的1/2，内存增长降低到原来的1/3。</p>
+<p>稳住了战况后，我们看着监控上的增长曲线，还是觉得不太对劲。</p>
 
     </div>
 
@@ -194,18 +171,17 @@
 </div>
 <footer class="post-footer">
       <div class="post-tags">
-          <a href="/tags/golang/">Golang</a>
-          <a href="/tags/profile/">Profile</a>
-          <a href="/tags/pprof/">pprof</a>
+          <a href="/tags/redis/">Redis</a>
+          <a href="/tags/memory/">Memory</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/2020-01-03-docker-pull-failed-analysis/">
+        <a class="prev" href="/post/2017-07-15-how-to-profile-golang-programs/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">一个诡异的拉镜像失败问题排查</span>
+            <span class="prev-text nav-default">Golang服务的性能调优与问题定位</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/2018-12-15-redis-mem-blow-up/">
-            <span class="next-text nav-default">Redis内存暴涨的问题排查</span>
+        <a class="next" href="/post/2017-01-15-%E5%88%86%E4%BA%AB%E4%BD%BF%E7%94%A8redigo%E8%BF%9E%E5%88%B0redis-proxy%E8%B8%A9%E5%88%B0%E7%9A%84%E5%9D%91/">
+            <span class="next-text nav-default">分享使用redigo连到redis proxy踩到的坑</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

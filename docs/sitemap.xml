@@ -23,14 +23,14 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/golang/</loc>
+    <loc>http://localhost:1313/categories/golang/</loc>
     <lastmod>2020-01-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/golang/</loc>
+    <loc>http://localhost:1313/tags/golang/</loc>
     <lastmod>2020-01-03T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -86,6 +86,13 @@
   </url>
   
   <url>
+    <loc>http://localhost:1313/tags/memory/</loc>
+    <lastmod>2017-07-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/tags/pprof/</loc>
     <lastmod>2017-07-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -94,6 +101,27 @@
   
   <url>
     <loc>http://localhost:1313/tags/profile/</loc>
+    <lastmod>2017-07-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/categories/redis/</loc>
+    <lastmod>2017-07-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/tags/redis/</loc>
+    <lastmod>2017-07-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/post/2018-12-15-redis-mem-blow-up/</loc>
     <lastmod>2017-07-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
